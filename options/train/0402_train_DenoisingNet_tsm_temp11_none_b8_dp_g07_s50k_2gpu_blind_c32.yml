@@ -1,0 +1,133 @@
+# GENERATE TIME: Mon Feb 21 08:52:36 2022
+# CMD:
+# ./run.py -opt ./options/train/diffusion/0130_train_DenoisingNet_tsm_temp11_none_b8_dp_g07_s50k_2gpu_blind.yml
+
+# general settings
+name: 0402_train_DenoisingNet_tsm_temp11_none_b8_dp_g07_s50k_2gpu_blind_c32
+model_type: DenoisingModel
+
+num_gpu: 2  # set num_gpu: 0 for cpu mode
+manual_seed: 10
+
+# dataset and data loader settings
+datasets:
+  train:
+    name: DAVIS_dali
+    type: train_dali_loader
+
+    trainset_dir: ./datasets/fastdvd_data/training/mp4
+    noise_ival: [5, 55]
+    batch_size_per_gpu: 8
+    temp_patch_size: 11
+    # patch_size: [96, 96]
+    patch_size: [96, 96]
+    max_number_patches: 300000
+    use_flip: true
+    use_rot: true
+
+    # data loader
+    use_shuffle: true
+    prefetch_mode: ~
+    noise_shape: N
+
+    # blind denoising
+    blind: True
+
+  val:
+    name: Set8
+    type: ValFolderDataset
+    valsetdir: ./datasets/Set8
+    num_validation_frames: 85
+    valnoisestd: 20
+    blind: True
+
+# network structures
+network_g:
+  type: TSN
+  num_segments: 11
+  modality: 'RGB'
+  base_model: WNet_multistage
+  consensus_type: 'avg'
+  dropout: 0
+  img_feature_dim: 256
+  partial_bn: True
+  pretrain: 'imagenet'
+  shift_type: TSM
+  shift_div: 8
+  shift_place: blockres
+  fc_lr5: True
+  temporal_pool: False
+  non_local: False
+  unet_kernel_size: 3
+  max_pts_stride: 1
+  net2d_opt:
+    chns: [32, 64, 128]
+    mid_ch: 32
+    shift_input: False
+    norm: 'none'
+    blind: True
+  inplace: False
+  
+
+# path
+path:
+  # pretrain_network_g: experiments/0116_train_DenoisingNet_tsm_temp11_none/models/net_g_45000.pth
+  strict_load_g: true
+  # ignore_resume_networks: 'network_g'
+  # resume_state: experiments/0116_train_DenoisingNet_tsm_temp11_none/training_states/45000.state
+
+# training settings
+train:
+  optim_g:
+    type: Adam
+    lr: !!float 1e-3
+    weight_decay: 0
+    betas: [0.9, 0.99]
+
+  scheduler:
+    type: MultiStepLR
+    # milestones: [200000]
+    milestones: [50000, 100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 550000, 600000, 650000]
+    gamma: 0.7
+
+  total_iter: !!float 7e5
+  warmup_iter: -1  # no warm up
+  gradient_clipping: 5
+
+  # losses
+  pixel_opt:
+    type: MSELoss
+    loss_weight: 1.0
+    reduction: mean
+
+# validation settings
+val:
+  val_freq: !!float 5e3
+  # val_freq: !!float 1e0
+  save_img: true
+  temp_psz: 11
+  future_buffer_len: 2
+  patch_mod: 64
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 2
+      test_y_channel: false
+
+# logging settings
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 5e3
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+# dist_params:
+#   backend: nccl
+#   port: 29500
+
+# OMP_NUM_THREADS=16 CUDA_VISIBLE_DEVICES=0,1 python ./run.py -opt ./options/train/blind/0402_train_DenoisingNet_tsm_temp11_none_b8_dp_g07_s50k_2gpu_blind_c32.yml
+# CUDA_VISIBLE_DEVICES=4 python -m torch.distributed.launch --nproc_per_node=2 --master_port=4321 ./run_sever3.py -opt ./options/train/train_RescalingNet_V3_wo_degrad_chn_attn_gradient_clip.yml --debug --launcher pytorch
