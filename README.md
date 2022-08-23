@@ -4,6 +4,7 @@ Official implementation for Real-time Streaming Video Denoising with Bidirection
 
 [project website](https://chenyangqiqi.github.io/BSVD/index.html) | [paper](https://arxiv.org/abs/2207.06937)
 
+![](./figures/framework.jpg)
 ---
 ## Dependencies and Installation
 ### Environment
