@@ -71,9 +71,8 @@ python ./run_test.py -opt ./options/test/bsvd_c64.yml
 CUDA_VISIBLE_DEVICES=0,1 python ./run.py -opt ./options/train/bsvd_c64_unblind.yml
 ```
 We train the model on 2 RTX 3090 GPU for 2 days.
-
+Here is one [example log and tensorboard] (https://hkustconnect-my.sharepoint.com/:f:/g/personal/cqiaa_connect_ust_hk/EqonQBPy6LZBm3nCsOGRd1EBsO3CgEMpRKoCnNH6YDof7w?e=197o0V) for our training.
 ---
-
 
 ## Profile the model
 Type in command line
