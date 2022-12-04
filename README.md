@@ -57,9 +57,10 @@ Download the DAVIS (for train and test) and Set8 dataset (for test) from [onedri
  |--***.py
 ```
 ---
+
 ## Test
-You may also download the [pretrained checkpoint](https://hkustconnect-my.sharepoint.com/:u:/g/personal/cqiaa_connect_ust_hk/EW8106urmu9KiNQlpE1QdVkBCcJBU4_sfMevqkkCDMCvuw?e=HIjXVI).
-Put it under ``.experiments/pretrained_ckpt``. Then, run the command to produce the result in the Table2 from paper
+You may also download the [pretrained checkpoint](https://hkustconnect-my.sharepoint.com/:f:/g/personal/cqiaa_connect_ust_hk/Em-latu2Zm1MpPoxstOmpCQBzNTkyGVqdUEODK3oxcz6eA?e=loC1pu)
+Put bsvd_64.pth under ``.experiments/pretrained_ckpt``. Then, run the command to produce the result in the Table2 from paper
 
 ```bash
 python ./run_test.py -opt ./options/test/bsvd_c64.yml
