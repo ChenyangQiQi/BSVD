@@ -65,6 +65,8 @@ Put bsvd_64.pth under ``.experiments/pretrained_ckpt``. Then, run the command to
 ```bash
 python ./run_test.py -opt ./options/test/bsvd_c64.yml
 ```
+Two checkpoints are also provided for [blind](https://hkustconnect-my.sharepoint.com/:f:/g/personal/cqiaa_connect_ust_hk/EkmrwTvtKYlLha2G1-8XIskBXOwWt33YUy7rl2yXnj-maw?e=cXdsjr) and [unidirection](https://hkustconnect-my.sharepoint.com/:f:/g/personal/cqiaa_connect_ust_hk/EtJVxVxBDSBDv5qOvRfM9xcBjkpPLbl4sfhBzpIPAWVMiw?e=cTNO8r)
+
 ---
 ## Train
 
