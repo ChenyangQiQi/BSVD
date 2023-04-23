@@ -117,13 +117,13 @@ To extend functions, please create your codes here:
 ## Citation
 If you find this work useful for your research, please cite:
 ```
-    @inproceedings{qi2022BSVD,
-        title={Real-time Streaming Video Denoising with Bidirectional Buffers},
-        author={Chenyang Qi and Junming Chen and Xin Yang and Qifeng Chen},
-        booktitle = {ACM MM},
-        year={2022}
-        }
-}
+@inproceedings{qi2022BSVD,
+    title={Real-time Streaming Video Denoising with Bidirectional Buffers},
+    author={Chenyang Qi and Junming Chen and Xin Yang and Qifeng Chen},
+    booktitle = {ACM MM},
+    year={2022}
+    }
+
 ```
 
 ## Contact
