@@ -15,7 +15,7 @@ model_history
 *.npy
 
 dataset
-data
-data/*
+
+
 tb_profile_logger
 scp.sh
