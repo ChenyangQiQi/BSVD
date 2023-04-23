@@ -1,32 +1,21 @@
-/.idea/
-tb_logger/*
-*__pycache__
-/results/*
-/experiments/*
+__pycache__
+.vscode/
 trash
-
-# Log
-*.log
-*.csv
-torchprofiler
-run_server7.py
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
+trash/**
 *.pyc
-*TestData*
+*/__pycache__
+logs
 
-*.egg-info
-*.EGG-INFO
-*build
+results
+result
+modules/__pycache__/__init__.cpython-37.pyc
+modules/__pycache__/cbam.cpython-37.pyc
+model_reduce
+model_history
+*.npy
 
-*.vscode
-**.engine
-**.npy
-profile_main.py
-tmp/*
-paper
+dataset
+data
+data/*
+tb_profile_logger
+scp.sh
