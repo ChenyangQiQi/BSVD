@@ -37,8 +37,16 @@ pip install tensorboardX
 
 
 # Data
+Download the pretrained checkpoint as training logs:
 
-Keep the folder structure as (to polish structure)
+```bash
+wget https://github.com/ChenyangQiQi/BSVD/releases/download/v0.0.1/logs.tar.gz
+tar -xvf logs.tar.gz
+```
+
+Download the CRVD testset from [onedrive](https://hkustconnect-my.sharepoint.com/:f:/g/personal/cqiaa_connect_ust_hk/EhMFewzVZrRFvrobZ3Z7JCsBYsQD-iNKoLLalad0uc4RCg?e=0CL69m).
+
+Keep the folder structure as
 ```
 --EfficientVideoDenoising
   |--configs
