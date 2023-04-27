@@ -6,6 +6,10 @@ Official implementation for Real-time Streaming Video Denoising with Bidirection
 
 ![](./figures/framework.jpg)
 ---
+
+This branch is for synthesic noise removal on DAVIS dataset. We also provide the code for real raw noise removal [here](https://github.com/ChenyangQiQi/BSVD/tree/bsvd_raw). 
+
+---
 ## Dependencies and Installation
 ### Environment
 This code is based on PyTorch and [BasicSR](https://github.com/xinntao/BasicSR) repo. It has been tested on Ubuntu 18.04 LTS and CUDA 11.1.
