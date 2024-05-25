@@ -7,7 +7,7 @@ Official implementation for Real-time Streaming Video Denoising with Bidirection
 ![](./figures/framework.jpg)
 ---
 
-This branch is for synthesic noise removal on DAVIS dataset. We also provide the code for real raw noise removal [here](https://github.com/ChenyangQiQi/BSVD/tree/bsvd_raw). 
+This branch is for synthetic noise removal on the DAVIS dataset. We also provide the code for real raw noise removal [here](https://github.com/ChenyangQiQi/BSVD/tree/bsvd_raw). 
 
 ---
 ## Dependencies and Installation
@@ -21,24 +21,24 @@ conda activate bsvd
 ```
 
 
-We recommend you install this repo locall as:
+We recommend you install this repo locally as:
 ```
 pip install -r requirements.txt
 cd BasicSR
 python setup.py develop
 cd ..
 ```
-if you use CUDA 11 and get runtime error. Reinstall torch as:
+if you use CUDA 11 and get a runtime error. Reinstall torch as:
 ```
 pip uninstall torch
 pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
 ```
 
-We use Nvidia DALI loader to load video frames.
+We use a Nvidia DALI loader to load video frames.
 ```
 pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/ nvidia-dali-cuda110==1.12.0
 ```
-Our test environment is CUDA 11.1. You may find DALI loader for other CUDA version from their [github](https://github.com/NVIDIA/DALI/releases)
+Our test environment is CUDA 11.1. You may find the DALI loader for other CUDA versions from their [github](https://github.com/NVIDIA/DALI/releases)
 
 <!-- Install the dependency for performance profiling
 ```
@@ -64,7 +64,7 @@ Download the DAVIS (for train and test) and Set8 dataset (for test) from [onedri
 
 ## Test
 You may also download the [pretrained checkpoint](https://hkustconnect-my.sharepoint.com/:f:/g/personal/cqiaa_connect_ust_hk/Em-latu2Zm1MpPoxstOmpCQBzNTkyGVqdUEODK3oxcz6eA?e=loC1pu)
-Put bsvd_64.pth under ``.experiments/pretrained_ckpt``. Then, run the command to produce the result in the Table2 from paper
+Put bsvd_64.pth under ``.experiments/pretrained_ckpt``. Then, run the command to produce the result in the Table 2 from paper
 
 ```bash
 python ./run_test.py -opt ./options/test/bsvd_c64.yml
@@ -77,13 +77,13 @@ Two checkpoints are also provided for [blind](https://hkustconnect-my.sharepoint
 ```bash
 CUDA_VISIBLE_DEVICES=0,1 python ./run.py -opt ./options/train/bsvd_c64_unblind.yml
 ```
-We train the model on 2 RTX 3090 GPU for 2 days.
+We train the model on 2 RTX 3090 GPUs for 2 days.
 Here is one [example log and tensorboard](https://hkustconnect-my.sharepoint.com/:f:/g/personal/cqiaa_connect_ust_hk/EqonQBPy6LZBm3nCsOGRd1EBsO3CgEMpRKoCnNH6YDof7w?e=197o0V) for our training.
 
 ---
 
 ## Profile the model
-Type in command line
+Type in the command line
 
     python profile.py
 
@@ -96,10 +96,10 @@ Example output
     device cuda
     load from ./experiments/pretrained_ckpt/bsvd-64.pth
     <Experimental_root.models.denoising_model.DenoisingModel object at 0x7f3187110710>
-    size of tensor torch.Size([1, 10, 4, 540, 960])
+    size of the tensor torch.Size([1, 10, 4, 540, 960])
     use device  cuda
     output shape is torch.Size([1, 10, 3, 540, 960])
-    size of tensortorch.Size([1, 10, 4, 540, 960])
+    size of the tensor torch.Size([1, 10, 4, 540, 960])
     use device cuda
 
     test function name: <class 'Experimental_root.archs.bsvd_arch.BSVD'>
